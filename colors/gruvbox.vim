@@ -131,6 +131,16 @@ let s:gb.faded_purple   = ['#8f3f71', 96]      " 143-63-113
 let s:gb.faded_aqua     = ['#427b58', 66]      " 66-123-88
 let s:gb.faded_orange   = ['#af3a03', 130]     " 175-58-3
 
+let s:gb.faint_green    = ['#0a2304', 000]
+let s:gb.faint_red      = ['#2a0304', 001]
+let s:gb.faint_yellow   = ['#4d431c', 002]
+let s:gb.faint_aqua     = ['#2a4344', 003]
+
+let s:gb.pale_red       = ['#ffb185', 004]
+let s:gb.pale_green     = ['#daedb3', 005]
+let s:gb.pale_yellow    = ['#6d633c', 006]
+let s:gb.pale_aqua      = ['#daedd3', 007]
+
 " }}}
 " Setup Emphasis: {{{
 
@@ -197,6 +207,10 @@ if s:is_dark
   let s:purple = s:gb.bright_purple
   let s:aqua   = s:gb.bright_aqua
   let s:orange = s:gb.bright_orange
+  let s:faint_red = s:gb.faint_red
+  let s:faint_green = s:gb.faint_green
+  let s:faint_yellow = s:gb.faint_yellow
+  let s:faint_aqua = s:gb.faint_aqua
 else
   let s:bg0  = s:gb.light0
   if g:gruvbox_contrast_light == 'soft'
@@ -227,6 +241,10 @@ else
   let s:purple = s:gb.faded_purple
   let s:aqua   = s:gb.faded_aqua
   let s:orange = s:gb.faded_orange
+  let s:faint_red = s:gb.pale_red
+  let s:faint_green = s:gb.pale_green
+  let s:faint_yellow = s:gb.bright_yellow
+  let s:faint_aqua = s:gb.pale_aqua
 endif
 
 " reset to 16 colors fallback
@@ -267,6 +285,8 @@ let s:gb.blue   = s:blue
 let s:gb.purple = s:purple
 let s:gb.aqua   = s:aqua
 let s:gb.orange = s:orange
+
+let s:fg_none = ' guifg=".s:none[0]   ." ctermfg=".s:none[0]   ."'
 
 " }}}
 " Setup Terminal Colors For Neovim: {{{
@@ -650,14 +670,12 @@ endif
 " }}}
 " Diffs: {{{
 
-call s:HL('DiffDelete', s:red, s:bg0, s:inverse)
-call s:HL('DiffAdd',    s:green, s:bg0, s:inverse)
-"call s:HL('DiffChange', s:bg0, s:blue)
-"call s:HL('DiffText',   s:bg0, s:yellow)
+call s:HL('DiffDelete', s:fg_none, s:faint_red, s:bold)
+call s:HL('DiffAdd',    s:fg_none, s:faint_green, s:bold)
 
 " Alternative setting
-call s:HL('DiffChange', s:aqua, s:bg0, s:inverse)
-call s:HL('DiffText',   s:yellow, s:bg0, s:inverse)
+call s:HL('DiffChange', s:fg_none, s:faint_aqua, s:bold)
+call s:HL('DiffText',   s:fg_none, s:faint_yellow, s:bold)
 
 " }}}
 " Spelling: {{{
